@@ -18,11 +18,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     // UI components
-    private BluetoothAdapter mBluetoothAdapter;
-    private ListView listView;
+    ListView listView;
 
     // objects declaration
-    private ArrayList<String> mDeviceList = new ArrayList<String>();
+    ArrayList<String> mDeviceList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,21 +32,15 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView);
 
         // get default bluetooth on device
-        mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
         // start discovery
         mBluetoothAdapter.startDiscovery();
 
         // register broadcast receiver and listen to specific "ACTION_FOUND" request
-        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-        registerReceiver(receiver, filter);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // unregister broadcast receiver
-        unregisterReceiver(receiver);
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(BluetoothDevice.ACTION_FOUND);
+        this.registerReceiver(receiver, filter);
     }
 
     private final BroadcastReceiver receiver = new BroadcastReceiver() {
@@ -59,18 +52,27 @@ public class MainActivity extends AppCompatActivity {
                 //  receive all contents
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
 
-                // get device name and MAC address
-                String deviceName = device.getName();
-                String deviceHardwareAddress = device.getAddress(); // MAC address
+                if (device != null) {
+                    // get device name and MAC address
+                    String deviceName = device.getName();
+                    String deviceHardwareAddress = device.getAddress(); // MAC address
 
-                // add this info to ArrayList
-                mDeviceList.add(device.getName() + "\n" + device.getAddress());
+                    // add this info to ArrayList
+                    mDeviceList.add(device.getName() + "\n" + device.getAddress());
 
-                // put the item into ListView
-                listView.setAdapter(new ArrayAdapter<String>(context,
-                        android.R.layout.simple_list_item_1, mDeviceList));
-                Log.d("NewBtDevice",deviceName + deviceHardwareAddress);
+                    // put the item into ListView
+                    listView.setAdapter(new ArrayAdapter<>(context,
+                            android.R.layout.simple_list_item_1, mDeviceList));
+                    Log.d("NewBtDevice",deviceName + deviceHardwareAddress);
+                }
             }
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // unregister broadcast receiver
+        unregisterReceiver(receiver);
+    }
 }
