@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+
 public class MainActivity extends AppCompatActivity {
 
     // constants
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         // bind UI components
         listView = (ListView) findViewById(R.id.listView);
 
+
         // check for permissions
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_DENIED) {
             String[] permission = {Manifest.permission.ACCESS_FINE_LOCATION};
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             checkBluetoothAdapter();
         }
+
     }
 
     // handle runtime permissions
@@ -69,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
 
     // handle default BluetoothAdapter
     private void checkBluetoothAdapter() {
-        // get default bluetooth on device
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBluetoothAdapter == null) {
             Toast.makeText(this, "Device does not support Bluetooth", Toast.LENGTH_SHORT).show();
