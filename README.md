@@ -1,3 +1,3 @@
-Building a Simple Bluetooth Scanner:
+# Simple Bluetooth scanner
 
 <img src="./Screenshots/BluetoothSimple.png" width="300">
