@@ -2,7 +2,7 @@
 
 <img src="./Screenshots/BluetoothSimple.png" width="300">
 
-Procedure:
+## Procedure:
 
 1. Declare permissions in `Manifest`.
 2. Request `permissions` at runtime.
