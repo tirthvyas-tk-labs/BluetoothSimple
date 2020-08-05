@@ -1,3 +1,3 @@
 Building a Simple Bluetooth Scanner:
 
-![Bluetooth Scanner](./Screenshots/BluetoothSimple.png)
+<img src="./Screenshots/BluetoothSimple.png" width="100">
