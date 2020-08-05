@@ -18,10 +18,10 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     // UI components
-    ListView listView;
+    private ListView listView;
 
     // objects declaration
-    ArrayList<String> mDeviceList = new ArrayList<>();
+    private final ArrayList<String> mDeviceList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

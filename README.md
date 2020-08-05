@@ -1,1 +1,3 @@
-Building a Simple Bluetooth Scanner
+Building a Simple Bluetooth Scanner:
+
+![Bluetooth Scanner](./Screenshots/BluetoothSimple.png)
